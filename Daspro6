@@ -1,0 +1,55 @@
+def display_genres():
+    genres = ["Action", "Comedy", "Drama", "Horror", "Science Fiction"]
+    print("Daftar Genre:")
+    for idx, genre in enumerate(genres, start=1):
+        print(f"{idx}. {genre}")
+
+def calculate_ticket_price(day):
+    if day == "Sabtu":
+        return 35
+    elif day == "Minggu":
+        return 50
+    else:
+        return 40
+
+def main():
+    display_genres()
+    selected_genre = input("Pilih genre film (masukkan nomor): ")
+    genres = ["Action", "Comedy", "Drama", "Horror", "Science Fiction"]
+    selected_genre = genres[int(selected_genre) - 1]
+
+    films = {
+        "Action": {"Fast & Furious 9": 10, "Mortal Kombat": 12},
+        "Comedy": {"The Mitchells vs. The Machines": 8, "Free Guy": 10},
+        "Drama": {"The Shawshank Redemption": 15, "The Pursuit of Happyness": 12},
+        "Horror": {"A Quiet Place Part II": 12, "Malignant": 10},
+        "Science Fiction": {"Dune": 15, "The Matrix Resurrections": 12}
+    }
+
+    print(f"Jenis film dalam genre {selected_genre}:")
+    for idx, (film, price) in enumerate(films[selected_genre].items(), start=1):
+        print(f"{idx}. {film} - Harga: {price}")
+
+    selected_film = input("Pilih film (masukkan nomor): ")
+    selected_film = list(films[selected_genre].keys())[int(selected_film) - 1]
+    ticket_price = calculate_ticket_price(input("Hari menonton (Sabtu/Minggu/Lainnya): "))
+    ticket_quantity = int(input("Jumlah tiket yang ingin dibeli: "))
+    total_price = ticket_price * ticket_quantity
+
+    print("\nDetail Pembelian:")
+    print(f"Nama: {input('Masukkan nama Anda: ')}")
+    print(f"Umur: {input('Masukkan usia Anda: ')}")
+    print(f"Genre: {selected_genre}")
+    print(f"Film: {selected_film}")
+    print(f"Jumlah Tiket: {ticket_quantity}")
+    print(f"Harga per Tiket: {ticket_price}")
+    print(f"Total Harga: {total_price}")
+
+    confirmation = input("Apakah Anda yakin ingin membeli tiket (y/n)? ")
+    if confirmation.lower() == "y":
+        print("Pembelian berhasil.")
+    else:
+        print("Pembelian dibatalkan.")
+
+if __name__ == "__main__":
+    main()
